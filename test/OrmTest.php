@@ -6,11 +6,11 @@ use Sample\Item;
 
 /**
  * Model の使用方法サンプル.
- * https://laravel.com/docs/5.2/database
+ * https://laravel.com/docs/5.2/eloquent
  */
-class ItemTest extends \PHPUnit_Framework_TestCase
+class OrmTest extends \PHPUnit_Framework_TestCase
 {
-    public function setUp()
+    static function setUpBeforeClass()
     {
         $capsule = new Capsule;
         $capsule->addConnection([
@@ -24,7 +24,10 @@ class ItemTest extends \PHPUnit_Framework_TestCase
             'prefix'   => '',
         ]);
         $capsule->bootEloquent();
+    }
 
+    public function setUp()
+    {
         Item::truncate();
         for ($i = 1; $i <= 10; $i++) {
             Item::create(['name' => "item${i}"]);
@@ -75,7 +78,4 @@ class ItemTest extends \PHPUnit_Framework_TestCase
 
         $item = Item::findOrFail(15);
     }
-
-
-
 }
