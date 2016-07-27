@@ -5,6 +5,7 @@ services:
   mysql:
     container_name: eloq-mysql
     build: ./docker/mysql
+    image: xanagi/eloq-mysql
     environment:
       MYSQL_ROOT_PASSWORD: pass
     networks:
@@ -13,6 +14,7 @@ services:
   php:
     container_name: eloq-php
     build: ./docker/php
+    image: xanagi/eloq-php
     volumes:
       - .:/sample
     networks:
